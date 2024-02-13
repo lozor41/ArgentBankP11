@@ -4,14 +4,10 @@ import SignInForm from '../../components/signinform/SignInForm'
 import './signin.css'
 
 export default function SignIn() {
-    document.title = 'Argent Bank - Sign in'
+  document.title = 'Argent Bank - Sign in'
   return (
-    <>
-      <Navigation />
-      <main className="main bg-dark">
-        <SignInForm />
-      </main>
-      <Footer />
-    </>
+    <main className="main bg-dark">
+      <SignInForm />
+    </main>
   )
 }

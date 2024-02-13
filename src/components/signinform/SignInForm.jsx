@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react'
 import '../signinform/signinform.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../app/actions/LoginActions'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { setAccessToken } from '../../app/reducers/authSlice'
+import { login } from '../../api/userApi'
 
 export default function SignInForm() {
-    let navigate = useNavigate()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { error, userInfo } = userLogin
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/user')
-    }
-  }, [navigate, userInfo])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(login(email, password))
+    login({ email, password })
+      .then(data => {
+        dispatch(setAccessToken(data.body.token))
+        navigate('/user')
+      })
   }
 
 
@@ -59,7 +56,7 @@ export default function SignInForm() {
           Sign In
         </button>
         <br />
-        {error && <div>Please check the login informations.</div>}
+        {/* {error && <div>Please check the login informations.</div>} */}
       </form>
     </section>
   )

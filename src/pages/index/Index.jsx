@@ -1,7 +1,7 @@
 // Icons
-import iconChat from '../assets/icon-chat_1.webp'
-import iconMoney from '../assets/icon-money_1.webp'
-import iconSecurity from '../assets/icon-security.webp'
+import iconChat from '../../assets/icon-chat_1.webp'
+import iconMoney from '../../assets/icon-money_1.webp'
+import iconSecurity from '../../assets/icon-security.webp'
 
 // Components
 import Banner from '../../components/banner/Banner'
@@ -27,29 +27,25 @@ export default function Index() {
     'We use top of the line encryption to make sure your data and money is always safe.'
 
   return (
-    <>
-      <Navigation />
-      <main>
-        <Banner />
-        <section className="features">
-          <FeatureItem
-            iconUrl={iconChat}
-            title={featureTitleChat}
-            text={featureTextChat}
-          />
-          <FeatureItem
-            iconUrl={iconMoney}
-            title={featureTitleMoney}
-            text={featureTextMoney}
-          />
-          <FeatureItem
-            iconUrl={iconSecurity}
-            title={featureTitleSecurity}
-            text={featureTextSecurity}
-          />
-        </section>
-      </main>
-        <Footer />
-    </>
+    <main>
+      <Banner />
+      <section className="features">
+        <FeatureItem
+          iconUrl={iconChat}
+          title={featureTitleChat}
+          text={featureTextChat}
+        />
+        <FeatureItem
+          iconUrl={iconMoney}
+          title={featureTitleMoney}
+          text={featureTextMoney}
+        />
+        <FeatureItem
+          iconUrl={iconSecurity}
+          title={featureTitleSecurity}
+          text={featureTextSecurity}
+        />
+      </section>
+    </main>
   )
 }
