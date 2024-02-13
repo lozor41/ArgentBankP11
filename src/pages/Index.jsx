@@ -7,10 +7,10 @@ import iconSecurity from '../assets/icon-security.webp'
 import Banner from '../components/Banner'
 import Navigation from '../components/Navigation'
 import FeatureItem from '../components/Feature'
+import Footer from '../components/Footer'
 
 // Styles
 import '../style/index.css'
-import Footer from '../components/Footer'
 
 export default function Index() {
   document.title = 'Argent Bank - Home Page'

@@ -5,6 +5,7 @@ import UserHeader from '../components/UserHeader'
 import '../style/user.css'
 
 export default function User() {
+    document.title = "Argent Bank - User's Page"
   return (
     <>
       <Navigation />
