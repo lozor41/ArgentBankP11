@@ -1,7 +1,7 @@
-import Footer from '../components/Footer'
-import Navigation from '../components/Navigation'
-import SignInForm from '../components/SignInForm'
-import '../style/signin.css'
+import Footer from '../../components/footer/Footer'
+import Navigation from '../../components/navigation/Navigation'
+import SignInForm from '../../components/signinform/SignInForm'
+import './signin.css'
 
 export default function SignIn() {
     document.title = 'Argent Bank - Sign in'

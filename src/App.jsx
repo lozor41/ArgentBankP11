@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Index from './pages/Index'
-import SignIn from './pages/SignIn'
-import User from './pages/User'
+import Index from './pages/index/Index'
+import SignIn from './pages/signin/SignIn'
+import User from './pages/user/User'
 
 export default function App() {
   return (

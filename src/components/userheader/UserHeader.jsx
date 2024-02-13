@@ -1,4 +1,4 @@
-import '../style/userheader.css'
+import '../userheader/userheader.css'
 
 export default function UserHeader(props) {
   return (

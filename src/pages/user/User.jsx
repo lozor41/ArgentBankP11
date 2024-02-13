@@ -1,8 +1,8 @@
-import Footer from '../components/Footer'
-import Navigation from '../components/Navigation'
-import Account from '../components/Account'
-import UserHeader from '../components/UserHeader'
-import '../style/user.css'
+import Footer from '../../components/footer/Footer'
+import Navigation from '../../components/navigation/Navigation'
+import Account from '../../components/account/Account'
+import UserHeader from '../../components/userheader/UserHeader'
+import './user.css'
 
 export default function User() {
     document.title = "Argent Bank - User's Page"

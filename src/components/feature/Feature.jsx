@@ -1,4 +1,4 @@
-import '../style/feature.css'
+import '../feature/feature.css'
 
 export default function FeatureItem(props) {
   return (

@@ -1,4 +1,4 @@
-import '../style/account.css'
+import '../account/account.css'
 export default function Account(props) {
   return (
     <section className="account">

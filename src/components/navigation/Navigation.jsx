@@ -1,9 +1,9 @@
-import logo from '../assets/argentBankLogo_1.webp'
+import logo from '../../assets/argentBankLogo_1.webp'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import '../style/navigation.css'
-import { logout } from '../app/actions/LoginActions'
+import '../navigation/navigation.css'
+import { logout } from '../../app/actions/LoginActions'
 
 export default function Navigation() {
   let navigate = useNavigate()

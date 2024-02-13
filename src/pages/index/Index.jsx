@@ -4,13 +4,13 @@ import iconMoney from '../assets/icon-money_1.webp'
 import iconSecurity from '../assets/icon-security.webp'
 
 // Components
-import Banner from '../components/Banner'
-import Navigation from '../components/Navigation'
-import FeatureItem from '../components/Feature'
-import Footer from '../components/Footer'
+import Banner from '../../components/banner/Banner'
+import Navigation from '../../components/navigation/Navigation'
+import FeatureItem from '../../components/feature/Feature'
+import Footer from '../../components/footer/Footer'
 
 // Styles
-import '../style/index.css'
+import './index.css'
 
 export default function Index() {
   document.title = 'Argent Bank - Home Page'
