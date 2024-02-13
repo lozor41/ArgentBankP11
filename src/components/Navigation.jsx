@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import '../style/navigation.css'
-import { logout } from '../../app/actions/loginActions'
+import { logout } from '../app/actions/LoginActions'
 
 export default function Navigation() {
   let navigate = useNavigate()

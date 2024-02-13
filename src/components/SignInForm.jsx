@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import '../style/signinform.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../app/actions/loginActions'
+import { login } from '../app/actions/LoginActions'
 import { useNavigate } from 'react-router'
 
 export default function SignInForm() {
