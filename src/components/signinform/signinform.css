@@ -1,48 +1,74 @@
-.sign-in-button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
+.editing-profile-form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.editing-profile-form label {
+  color: #fff;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.editing-profile-form input {
+  padding: 5px;
+  flex: 1;
+}
+
+.btn{
+  font-weight: bold;
+  padding: 5px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-save {
+  color: #fff;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  margin-bottom: 10px;
+}
+
+.btn-save:hover {
+  border-color: #00a86b;
+  background-color: #00a86b;
+}
+
+.btn-cancel {
+  border-color: #e63946;
+  background-color: #e63946;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  border-color: #e42836;
+  background-color: #e42836;
+}
+
+@media (min-width: 790px) {
+  .editing-profile-form {
+    flex-direction: row;
+    justify-content: center;
   }
-  
-  .sign-in-content {
-    box-sizing: border-box;
-    background-color: white;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    padding: 2rem;
+
+  .form-group {
+    margin-bottom: 0;
+    margin-right: 10px;
   }
-  
-  .sign-in-icon {
-    font-size: 5rem;
+
+  .btn-save {
+    margin: 0 10px 0 0;
   }
-  
-  .input-remember {
-    display: flex;
-  }
-  
-  .input-remember label {
-    margin-left: 0.25rem;
-  }
-  
-  .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 1rem;
-  }
-  
-  .input-wrapper label {
-    font-weight: bold;
-  }
-  
-  .input-wrapper input {
-    padding: 5px;
-    font-size: 1.2rem;
-  }
+}

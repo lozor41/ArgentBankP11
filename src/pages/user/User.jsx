@@ -1,16 +1,30 @@
 import Account from '../../components/account/Account'
-import UserHeader from '../../components/userheader/UserHeader'
-import './user.css'
+import Greeting from '../../components/greeting/Greeting'
+import SignInForm from '../../components/signinform/SignInForm'
+import { useSelector } from 'react-redux'
+import { selectUserFirstName, selectUserLastName } from '../../app/selectors'
+import { useState } from 'react'
+import '../user/user.css'
 
-export default function User() {
-  document.title = "Argent Bank - User's Page"
+function User() {
+  const userFirstName = useSelector(selectUserFirstName())
+  const userLastName = useSelector(selectUserLastName())
+  const [isEditing, setIsEditing] = useState(false)
 
-
-
+  const displayEditForm = (e) => {
+    e.preventDefault()
+    setIsEditing(!isEditing)
+  }
 
   return (
-    <main className="main bg-dark bg-padding">
-      <UserHeader userName="Tony Jarvis" />
+    <main className="main bg-dark">
+      <div className="header">
+        <Greeting firstName={userFirstName} lastName={userLastName} />
+        <button className="edit-button" onClick={(e) => displayEditForm(e)}>
+          Edit Name
+        </button>
+        {isEditing && <SignInForm setIsEditing={setIsEditing} />}
+      </div>
       <h2 className="sr-only">Accounts</h2>
       <Account
         title="Argent Bank Checking (x8349)"
@@ -30,3 +44,5 @@ export default function User() {
     </main>
   )
 }
+
+export default User

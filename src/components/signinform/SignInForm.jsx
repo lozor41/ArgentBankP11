@@ -1,63 +1,55 @@
-import { useEffect, useState } from 'react'
+import { useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectUserFirstName, selectUserLastName } from '../../app/selectors'
+import { triggerUpdateProfile } from '../../feature/UserSlice'
 import '../signinform/signinform.css'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
-import { setAccessToken } from '../../app/reducers/authSlice'
-import { login } from '../../api/userApi'
 
-export default function SignInForm() {
+function EditingProfileForm({ setIsEditing }) {
   const dispatch = useDispatch()
+  const userFirstName = useSelector(selectUserFirstName())
+  const userLastName = useSelector(selectUserLastName())
+  const inputFirstName = useRef()
+  const inputLastName = useRef()
 
-  const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-
-  const submitHandler = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    login({ email, password })
-      .then(data => {
-        dispatch(setAccessToken(data.body.token))
-        navigate('/user')
-      })
+    dispatch(
+      triggerUpdateProfile(
+        inputFirstName.current.value,
+        inputLastName.current.value
+      )
+    )
+    setIsEditing(false)
   }
 
-
   return (
-    <section className="sign-in-content">
-      <i className="fa fa-user-circle sign-in-icon"></i>
-      <h1>Sign In</h1>
-      <form onSubmit={submitHandler}>
-        <div className="input-wrapper">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-remember">
-          <input type="checkbox" id="remember-me" />
-          <label htmlFor="remember-me">Remember me</label>
-        </div>
-        <button className="sign-in-button" type="submit" name="Login">
-          Sign In
-        </button>
-        <br />
-        {/* {error && <div>Please check the login informations.</div>} */}
-      </form>
-    </section>
+    <form className="editing-profile-form" onSubmit={(e) => handleSubmit(e)}>
+      <div className="form-group">
+        <label htmlFor="firstName">Firstname</label>
+        <input
+          type="text"
+          id="firstName"
+          ref={inputFirstName}
+          defaultValue={userFirstName}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="lastName">Lastname</label>
+        <input
+          type="text"
+          id="lastName"
+          ref={inputLastName}
+          defaultValue={userLastName}
+        />
+      </div>
+      <button className="btn btn-save" type="submit">
+        Save
+      </button>
+      <button className="btn btn-cancel" onClick={() => setIsEditing(false)}>
+        Cancel
+      </button>
+    </form>
   )
 }
+
+export default EditingProfileForm

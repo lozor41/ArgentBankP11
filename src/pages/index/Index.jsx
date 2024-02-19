@@ -1,51 +1,39 @@
-// Icons
-import iconChat from '../../assets/icon-chat_1.webp'
-import iconMoney from '../../assets/icon-money_1.webp'
-import iconSecurity from '../../assets/icon-security.webp'
+import Hero from '../../components/hero/Hero'
+import Feature from '../../components/feature/Feature'
+import chatIcon from '../../assets/icon-chat_1.webp'
+import moneyIcon from '../../assets/icon-money_1.webp'
+import securityIcon from '../../assets/icon-security.webp'
+import '../index/index.css'
 
-// Components
-import Banner from '../../components/banner/Banner'
-import Navigation from '../../components/navigation/Navigation'
-import FeatureItem from '../../components/feature/Feature'
-import Footer from '../../components/footer/Footer'
-
-// Styles
-import './index.css'
-
-export default function Index() {
-  document.title = 'Argent Bank - Home Page'
-
-  const featureTitleChat = 'You are our #1 priority'
-  const featureTitleMoney = 'More savings means higher rates'
-  const featureTitleSecurity = 'Security you can trust'
-
-  const featureTextChat =
-    'Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes.'
-  const featureTextMoney =
-    'The more you save with us, the higher your interest rate will be!'
-  const featureTextSecurity =
-    'We use top of the line encryption to make sure your data and money is always safe.'
-
+function Home() {
   return (
-    <main>
-      <Banner />
+    <main className="home">
+      <Hero />
       <section className="features">
-        <FeatureItem
-          iconUrl={iconChat}
-          title={featureTitleChat}
-          text={featureTextChat}
+        <h2 className="sr-only">Features</h2>
+        <Feature
+          image={chatIcon}
+          alt="Chat Icon"
+          title="You are our #1 priority"
+          text="Need to talk to a representative? You can get in touch through our
+          24/7 chat or through a phone call in less than 5 minutes."
         />
-        <FeatureItem
-          iconUrl={iconMoney}
-          title={featureTitleMoney}
-          text={featureTextMoney}
+        <Feature
+          image={moneyIcon}
+          alt="Chat Icon"
+          title="More savings means higher rates"
+          text="The more you save with us, the higher your interest rate will be!"
         />
-        <FeatureItem
-          iconUrl={iconSecurity}
-          title={featureTitleSecurity}
-          text={featureTextSecurity}
+        <Feature
+          image={securityIcon}
+          alt="Chat Icon"
+          title="Security you can trust"
+          text="We use top of the line encryption to make sure your data and money is
+          always safe."
         />
       </section>
     </main>
   )
 }
+
+export default Home

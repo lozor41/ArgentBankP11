@@ -1,23 +1,54 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Index from './pages/index/Index'
-import SignIn from './pages/signin/SignIn'
-import User from './pages/user/User'
-import Navigation from './components/navigation/Navigation'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Header from './components/header/Header'
+import Home from './pages/index/Index'
+import Error from './pages/Error/Error'
 import Footer from './components/footer/Footer'
+import SignIn from './pages/signin/SignIn'
+import Profile from './pages/user/User'
+import ProtectedRoutes from './components/protectedroute/Protectedroute'
+import { useEffect } from 'react'
+import { isTokenExpired } from './utils/jwt'
+import { useDispatch } from 'react-redux'
+import { loginSuccess, setProfile } from './feature/UserSlice'
+import UserService from './app/UserService'
 
-export default function App() {
+function App() {
+  const dispatch = useDispatch()
+  const tokenFromLocalStorage = localStorage.getItem('token')
+
+  useEffect(() => {
+    const getUserProfile = async (token) => {
+      const userService = new UserService()
+      const userInformations = await userService.getUserProfile(token)
+      dispatch(setProfile(userInformations))
+    }
+
+    if (!isTokenExpired(tokenFromLocalStorage)) {
+      dispatch(
+        loginSuccess({
+          token: tokenFromLocalStorage,
+        })
+      )
+      getUserProfile(tokenFromLocalStorage)
+    }
+  }, [dispatch, tokenFromLocalStorage])
+
   return (
-    <>
-      <Router>
-        <Navigation />
+    <div className="App">
+      <BrowserRouter>
+        <Header />
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<SignIn />} />
-          <Route path="/user" element={<User />} />
-          <Route path="*" element={<div>Error404</div>} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+          <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
-      </Router>
-    </>
+      </BrowserRouter>
+    </div>
   )
 }
+
+export default App

@@ -1,13 +1,25 @@
-import Footer from '../../components/footer/Footer'
-import Navigation from '../../components/navigation/Navigation'
-import SignInForm from '../../components/signinform/SignInForm'
-import './signin.css'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+import { selectUserIsConnected } from '../../app/selectors'
+import LoginForm from '../../components/loginform/loginform'
+import '../signin/signin.css'
 
-export default function SignIn() {
-  document.title = 'Argent Bank - Sign in'
+function SignIn() {
+  const userIsConnected = useSelector(selectUserIsConnected())
+
+  if (userIsConnected) {
+    return <Navigate to="/profile" replace />
+  }
+
   return (
     <main className="main bg-dark">
-      <SignInForm />
+      <section className="sign-in-content">
+        <i className="fa fa-user-circle sign-in-icon"></i>
+        <h1>Sign In</h1>
+        <LoginForm />
+      </section>
     </main>
   )
 }
+
+export default SignIn
