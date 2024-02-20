@@ -10,9 +10,19 @@ export const login = ({ email, password }) => fetch(loginUrl, {
     }
 }).then(res => res.json())
 
-export const getProfile = () => fetch(profileUrl, {
+export const getProfile = token => fetch(profileUrl, {
     method: 'post',
     headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
     }
+}).then(res => res.json())
+
+export const updateUsername = (token, { userName }) => fetch(profileUrl, {
+    method: 'put',
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({ userName })
 }).then(res => res.json())

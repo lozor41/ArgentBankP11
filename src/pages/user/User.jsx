@@ -1,15 +1,24 @@
 import Account from '../../components/account/Account'
 import Greeting from '../../components/greeting/Greeting'
-import SignInForm from '../../components/signinform/SignInForm'
-import { useSelector } from 'react-redux'
-import { selectUserFirstName, selectUserLastName } from '../../app/selectors'
-import { useState } from 'react'
+import EditingProfileForm from '../../components/editingProfileForm/EditingProfileForm'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectCurrentUser, selectCurrentToken, setUser } from '../../app/userSlice'
+import { useEffect, useState } from 'react'
 import '../user/user.css'
+import { getProfile } from '../../api/userApi'
 
 function User() {
-  const userFirstName = useSelector(selectUserFirstName())
-  const userLastName = useSelector(selectUserLastName())
+  const dispatch = useDispatch()
+  const token = useSelector(selectCurrentToken)
+  const user = useSelector(selectCurrentUser)
   const [isEditing, setIsEditing] = useState(false)
+
+  useEffect(() => {
+    getProfile(token)
+      .then(data => dispatch(setUser(data.body)))
+  }, [])
+
+
 
   const displayEditForm = (e) => {
     e.preventDefault()
@@ -19,11 +28,11 @@ function User() {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <Greeting firstName={userFirstName} lastName={userLastName} />
+        <Greeting firstName={user?.firstName} lastName={user?.lastName} />
         <button className="edit-button" onClick={(e) => displayEditForm(e)}>
           Edit Name
         </button>
-        {isEditing && <SignInForm setIsEditing={setIsEditing} />}
+        {isEditing && <EditingProfileForm setIsEditing={setIsEditing} />}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <Account

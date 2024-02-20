@@ -2,12 +2,12 @@ import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import logo from '../../assets/argentBankLogo_1.webp'
 import '../header/header.css'
-import { logout } from '../../feature/UserSlice'
-import { selectUserIsConnected, selectUserFirstName } from '../../app/selectors'
+import { selectCurrentToken, selectCurrentUser, logOut } from '../../app/userSlice'
+
 
 function Header() {
-  const userIsConnected = useSelector(selectUserIsConnected())
-  const userFirstName = useSelector(selectUserFirstName())
+  const token = useSelector(selectCurrentToken)
+  const user = useSelector(selectCurrentUser)
   const dispatch = useDispatch()
 
   return (
@@ -22,16 +22,16 @@ function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          {userIsConnected ? (
+          {token ? (
             <>
               <NavLink to="/profile" className="main-nav-item">
                 <i className="fa fa-user-circle"></i>
-                {userFirstName}
+                {user?.userName}
               </NavLink>
               <NavLink
                 to="/"
                 className="main-nav-item"
-                onClick={() => dispatch(logout())}
+                onClick={() => dispatch(logOut())}
               >
                 <i className="fa fa-sign-out"></i>
                 Sign Out
