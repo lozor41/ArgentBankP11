@@ -1,8 +1,6 @@
-import { isTokenExpired } from '../utils/jwt'
-
 export const selectUserIsConnected = () => {
   return (state) =>
-    state.userData.token !== null && !isTokenExpired(state.userData.token)
+    state.userData.token !== null && !(state.userData.token)
 }
 
 export const selectUserToken = () => {

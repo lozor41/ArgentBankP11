@@ -16,4 +16,3 @@ export const getProfile = () => fetch(profileUrl, {
         "Content-Type": "application/json"
     }
 }).then(res => res.json())
-

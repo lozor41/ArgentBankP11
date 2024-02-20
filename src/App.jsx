@@ -7,7 +7,6 @@ import SignIn from './pages/signin/SignIn'
 import Profile from './pages/user/User'
 import ProtectedRoutes from './components/protectedroute/Protectedroute'
 import { useEffect } from 'react'
-import { isTokenExpired } from './utils/jwt'
 import { useDispatch } from 'react-redux'
 import { loginSuccess, setProfile } from './feature/UserSlice'
 import UserService from './app/UserService'
@@ -23,7 +22,7 @@ function App() {
       dispatch(setProfile(userInformations))
     }
 
-    if (!isTokenExpired(tokenFromLocalStorage)) {
+    if (tokenFromLocalStorage) {
       dispatch(
         loginSuccess({
           token: tokenFromLocalStorage,
