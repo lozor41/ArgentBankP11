@@ -1,9 +1,11 @@
 .editing-profile-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: auto;
   margin-top: 20px;
   width: 80%;
+  gap: 10px;
 }
 
 .form-group {
@@ -59,7 +61,8 @@
 
 @media (min-width: 790px) {
   .editing-profile-form {
-    flex-direction: row;
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
 
