@@ -1,0 +1,16 @@
+
+endpoints :
+
+/user/login
+/user/signup
+/user/profile
+
+/user/account
+
+/accounts/transactions
+
+/accounts/transactions/{transactionsId}
+
+/accounts/transactions/{transactionsId}/category
+
+/accounts/transactions/{transactionsId}/notes
