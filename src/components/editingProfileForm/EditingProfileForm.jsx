@@ -4,6 +4,7 @@ import './editingProfileForm.css'
 import { selectCurrentUser, selectCurrentToken, setUser } from '../../app/userSlice'
 import { updateUsername } from '../../api/userApi'
 
+// eslint-disable-next-line react/prop-types
 function EditingProfileForm({ setIsEditing }) {
   const dispatch = useDispatch()
   const user = useSelector(selectCurrentUser)
