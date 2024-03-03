@@ -29,10 +29,10 @@ function User() {
     <main className="main bg-dark">
       <div className="header">
         <Greeting firstName={user?.firstName} lastName={user?.lastName} />
-        <button className="edit-button" onClick={(e) => displayEditForm(e)}>
-          Edit Name
-        </button>
-        {isEditing && <EditingProfileForm setIsEditing={setIsEditing} />}
+        {isEditing ? (<EditingProfileForm setIsEditing={setIsEditing} />) :
+          (<button className="edit-button" onClick={(e) => displayEditForm(e)}>
+            Edit Name
+          </button>)}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <Account
